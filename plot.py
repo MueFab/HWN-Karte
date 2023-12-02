@@ -47,6 +47,7 @@ import os
 import gpxpy
 import folium
 import pandas as pd
+import webbrowser
 from itertools import cycle
 
 
@@ -107,7 +108,7 @@ def plot_markers(map_obj, df):
         marker_popup = f"{marker_popup_header}</br>- {active_challenges}" \
             if active_challenges \
             else marker_popup_header
-        marker_popup = marker_popup.replace(' ', '&nbsp;')
+        marker_popup = marker_popup.replace(' ', '&nbsp;').replace('-', "&#8209;")
         marker = folium.Marker(
             location=[row['Lat'], row['Long']],
             popup=marker_popup,
@@ -160,6 +161,8 @@ def main():
     parser.add_argument("csv_file", help="Path to the CSV file containing data points.")
     parser.add_argument("--gpx_dir", default="./routes", help="Directory containing GPX files. Default is './routes'.")
     parser.add_argument("--output", default="map.html", help="Name of the output HTML file. Default is 'map.html'.")
+    parser.add_argument("--no_browser", action="store_true",
+                        help="Do not automatically open the browser after generating the map.")
 
     # Parse arguments
     args = parser.parse_args()
@@ -180,6 +183,10 @@ def main():
     # Save the map
     map_osm.save(args.output)
     print(f"Map successfully saved as '{args.output}'.")
+
+    if not args.no_browser:
+        # Open the map in the browser
+        webbrowser.open('file://' + os.path.realpath(args.output))
 
 
 if __name__ == "__main__":

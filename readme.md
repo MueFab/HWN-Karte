@@ -26,7 +26,7 @@ This Python script is designed to create an interactive map using Folium, specif
    - The default output is 'map.html'.
 
 4. **View the Map**:
-   - Open 'map.html' in a web browser to interact with your personalized hiking map.
+   - Open 'map.html' in a web browser to interact with your personalized hiking map. Except if `--no_browser` is passed, this will happen automatically. 
 
 ## Dependencies
 
