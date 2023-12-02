@@ -2,6 +2,11 @@
 
 This Python script is designed to create an interactive map using Folium, specifically tailored for visualizing data from the Harzer Wandernadel hiking challenge in the Harz mountains, Germany. It displays various points of interest and hiking trails, making it a valuable tool for hikers and enthusiasts alike.
 
+<p float="left" align="middle">
+  <img src="https://raw.githubusercontent.com/MueFab/HWN-Karte/main/img/map1.png" width="400" />
+  <img src="https://raw.githubusercontent.com/MueFab/HWN-Karte/main/img/map2.png" width="400" /> 
+</p>
+
 ## Key Features
 
 - **Geographic Data Loading**: Processes data from a CSV file, including latitude, longitude, and additional attributes of points of interest.
@@ -26,7 +31,7 @@ This Python script is designed to create an interactive map using Folium, specif
    - The default output is 'map.html'.
 
 4. **View the Map**:
-   - Open 'map.html' in a web browser to interact with your personalized hiking map. Except if `--no_browser` is passed, this will happen automatically. 
+   - Open 'map.html' in a web browser to interact with your personalized hiking map. Except if `--no_browser` is passed, this will happen automatically. Use the menu in the top right corner to toggle the visibility of layers. 
 
 ## Dependencies
 
@@ -54,5 +59,6 @@ python script_name.py your_data.csv --gpx_dir your_gpx_directory --output your_o
 
 Replace `script_name.py` with the actual script name, `your_data.csv` with your CSV file, `your_gpx_directory` with the path to your GPX files, and `your_output_map.html` with your desired output file name.
 
-##Note
+## Note
+
 This script is specifically designed for certain data formats. Ensure compatibility of your CSV and GPX files with the script. Modify the script's parameters and functions to fit your unique data and requirements.
