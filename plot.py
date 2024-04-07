@@ -22,6 +22,7 @@ stamp/point name ('Name') and ID ('ID').
 - The column "Harzer Wandernadel" refers to the main challenge. All remaining columns refer to theme / bonus challenges.
 - A "1" in a column indicates that the stamp must be collected for that challenge.
 - Place GPX files for trails in the 'routes' directory. They will be automatically loaded and plotted on the map.
+- Place GPX files for finished tours in the 'tours' directory. They will be automatically loaded and plotted on the map.
 - Run the script to generate the map. The output will be an HTML file named 'map.html'.
 - Open 'map.html' in a web browser to interact with the map.
 
@@ -38,8 +39,8 @@ the script's expectations.
 - Modify the script's parameters and functions to suit your specific data and requirements.
 
 Author: Fabian Müntefering
-Date: 2023-12-03
-Version: 1.0
+Date: 2024-04-07
+Version: 1.1
 """
 
 import argparse
@@ -131,7 +132,8 @@ def plot_markers(map_obj, df):
         map_obj.add_child(group)
 
 
-def plot_gpx_tracks(map_obj, directory='./routes', colors=cycle(['blue', 'green', 'red', 'purple'])):
+def plot_gpx_tracks(map_obj, directory='./routes', track_feature_group=None,
+                    colors=cycle(['blue', 'green', 'red', 'purple'])):
     """Load and plot each GPX file's track."""
     for file in sorted(os.listdir(directory)):
         if file.endswith('.gpx'):
@@ -140,15 +142,18 @@ def plot_gpx_tracks(map_obj, directory='./routes', colors=cycle(['blue', 'green'
                     gpx = gpxpy.parse(gpx_file)
                 track_color = next(colors)
                 for track in gpx.tracks:
-                    plot_track(map_obj, track, track_color)
+                    plot_track(map_obj, track, track_color, track_feature_group)
             except Exception as e:
                 print(f"Error processing {file}: {e}")
 
 
-def plot_track(map_obj, track, track_color):
+def plot_track(map_obj, track, track_color, tfg=None):
     """Plot a single track on the map."""
     track_name = track.name or 'Unnamed Track'
-    track_feature_group = folium.FeatureGroup(name="Wanderweg: " + track_name, show=False)
+    if tfg is None:
+        track_feature_group = folium.FeatureGroup(name="Wanderweg: " + track_name, show=False)
+    else:
+        track_feature_group = tfg
     for segment in track.segments:
         points = [(point.latitude, point.longitude) for point in segment.points]
         folium.PolyLine(points, color=track_color, weight=2.5, opacity=1, popup=track_name).add_to(track_feature_group)
@@ -159,7 +164,9 @@ def main():
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Generate an interactive map from CSV and GPX data.")
     parser.add_argument("csv_file", help="Path to the CSV file containing data points.")
-    parser.add_argument("--gpx_dir", default="./routes", help="Directory containing GPX files. Default is './routes'.")
+    parser.add_argument("--routes_dir", default="./routes",
+                        help="Directory containing GPX routes. Default is './routes'.")
+    parser.add_argument("--tours_dir", default="./tours", help="Directory containing GPX tours. Default is './tours'.")
     parser.add_argument("--output", default="map.html", help="Name of the output HTML file. Default is 'map.html'.")
     parser.add_argument("--no_browser", action="store_true",
                         help="Do not automatically open the browser after generating the map.")
@@ -177,7 +184,11 @@ def main():
     map_osm = create_map(df)
     add_tile_layers(map_osm)
     plot_markers(map_osm, df)
-    plot_gpx_tracks(map_osm, directory=args.gpx_dir)
+    plot_gpx_tracks(map_osm, directory=args.routes_dir)
+
+    tours_group = folium.FeatureGroup(name="Abgeschlossene Touren", show=True)
+    plot_gpx_tracks(map_osm, directory=args.tours_dir, track_feature_group=tours_group, colors=cycle(['black']))
+    map_osm.add_child(tours_group)
     folium.LayerControl().add_to(map_osm)
 
     # Save the map
