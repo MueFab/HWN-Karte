@@ -90,17 +90,43 @@ def get_marker_color(row):
         return 'gray'
 
 
+def calculate_stamp_counts(df):
+    """Calculate the total and visited counts of stamps for each category."""
+    categories = [col for col in df.columns if col not in ['Lat', 'Long', 'Name', 'ID', 'Besucht']]
+    counts = {}
+    for category in categories:
+        total = df[category].sum()
+        visited = df[df['Besucht'] == 1][category].sum()
+        counts[category] = {'total': total, 'visited': visited}
+
+    general_counts = {'green': 0, 'red': 0, 'orange': 0, 'gray': 0}
+    for _, row in df.iterrows():
+        general_counts[get_marker_color(row)] += 1
+
+    return counts, general_counts
+
+
 def plot_markers(map_obj, df):
+    counts, general_counts = calculate_stamp_counts(df)
     """Plot each point from the DataFrame as a marker on the map."""
     feature_groups = {
         color: folium.FeatureGroup(name=f'Stempel: {name}', show=color == 'green')
         for color, name in zip(['green', 'red', 'orange', 'gray'],
-                               ['Bereits besucht', 'Fehlende Hauptstempel', 'Fehlende Themenstempel',
-                                'Fehlende reine Bonusstempel'])
+                               ['Bereits besucht ({})'.format(general_counts["green"]),
+                                'Fehlende Hauptstempel ({})'.format(general_counts["red"]),
+                                'Fehlende Themenstempel ({})'.format(general_counts["orange"]),
+                                'Fehlende reine Bonusstempel ({})'.format(general_counts["gray"])])
     }
     special_cols = ['Lat', 'Long', "Name", "ID", "Besucht"]
-    column_feature_groups = {col: folium.FeatureGroup(name=f'Heft: {col}', show=False) for col in df.columns if
-                             col not in special_cols}
+
+    column_feature_groups = {}
+    for col in df.columns:
+        if col in special_cols:
+            continue
+        visited_count = int(counts[col]["visited"])
+        total_count = int(counts[col]["total"])
+        name = "Heft: {} ({}/{})".format(col, visited_count, total_count)
+        column_feature_groups[col] = folium.FeatureGroup(name=name, show=False)
 
     for _, row in df.iterrows():
         marker_color = get_marker_color(row)
