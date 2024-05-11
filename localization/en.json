@@ -1,0 +1,22 @@
+{
+    "FINISHED_TOURS": "Finished Tours",
+    "NO_DATA_TO_PLOT": "No data available for display.",
+    "MAP_SAVED_SUCCESSFULLY": "Successfully saved map as '{}'.",
+    "TRAIL": "Trail: ",
+    "PROCESSING_ERROR": "When processing file {}, the following error occurred: {}!",
+    "FILE_NOT_FOUND": "File {} not found!",
+    "OPENTOPO_COPYRIGHT": "Map data © OpenStreetMap contributors, SRTM | Map style: © OpenTopoMap (CC-BY-SA)",
+    "COL_VISITED": "Visited",
+    "COL_MAIN_CHALLENGE": "Main Challenge",
+    "COL_NAME": "Name",
+    "COL_ID": "ID",
+    "COL_LAT": "Lat",
+    "COL_LON": "Lon",
+    "CHALLENGE_TITLE": "Challenge: {} ({}/{})",
+    "STAMP_STATUS": "Stamp Status: {}",
+    "STAMP_STATUS_VISITED": "Already Visited ({})",
+    "STAMP_STATUS_MAIN": "Missing Main Stamps ({})",
+    "STAMP_STATUS_THEME": "Missing Theme Stamps ({})",
+    "STAMP_STATUS_BONUS": "Missing Bonus Stamps ({})",
+    "UNNAMED_TRACK": "Unnamed Track"
+}

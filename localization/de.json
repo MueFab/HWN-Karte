@@ -1,0 +1,22 @@
+{
+    "FINISHED_TOURS": "Abgeschlossene Touren",
+    "NO_DATA_TO_PLOT": "Keine Daten zum Anzeigen verfügbar.",
+    "MAP_SAVED_SUCCESSFULLY": "Karte erfolgreich abgespeichert als '{}'.",
+    "TRAIL": "Wanderweg: ",
+    "PROCESSING_ERROR": "Beim Verarbeiten der Datei {} ist folgender Fehler aufgetreten: {}!",
+    "FILE_NOT_FOUND": "Datei {} nicht gefunden!",
+    "OPENTOPO_COPYRIGHT": "Kartendaten © OpenStreetMap-Mitwirkende, SRTM | Kartenstil: © OpenTopoMap (CC-BY-SA)",
+    "COL_VISITED": "Besucht",
+    "COL_MAIN_CHALLENGE": "Hauptheft",
+    "COL_NAME": "Name",
+    "COL_ID": "ID",
+    "COL_LAT": "Breitengrad",
+    "COL_LON": "Längengrad",
+    "CHALLENGE_TITLE": "Heft: {} ({}/{})",
+    "STAMP_STATUS": "Stempelstatus: {}",
+    "STAMP_STATUS_VISITED": "Bereits besucht ({})",
+    "STAMP_STATUS_MAIN": "Fehlende Hauptstempel ({})",
+    "STAMP_STATUS_THEME": "Fehlende Themenstempel ({})",
+    "STAMP_STATUS_BONUS": "Fehlende reine Bonusstempel ({})",
+    "UNNAMED_TRACK": "Unbenannte Route"
+}

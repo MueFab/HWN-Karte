@@ -1,4 +1,4 @@
-ID;Name;Besucht;Lat;Long;Harzer Wandernadel;Baudensteig;Burgen + Schlösser;Goethe im Harz;Goslar Wandert;Harzer Grenzweg;Harzer Hexenstieg;Harzer Steiger;Karstwanderweg;Kloster Wanderweg;Lutherweg;Nationalpark Harz;Quedlinburg;Selketalstieg;Steinway-Trail;Dorfrunde Seesen;Deister Wandernadel;Huy Fallstein
+ID;Name;Besucht;Breitengrad;Längengrad;Hauptheft;Baudensteig;Burgen + Schlösser;Goethe im Harz;Goslar Wandert;Harzer Grenzweg;Harzer Hexenstieg;Harzer Steiger;Karstwanderweg;Kloster Wanderweg;Lutherweg;Nationalpark Harz;Quedlinburg;Selketalstieg;Steinway-Trail;Dorfrunde Seesen;Deister Wandernadel;Huy Fallstein
 1;Eckertalsperre -Staumauer ;;51.84165;10.57998;1;;;;;1;;;;;;1;;;;;;
 2;Scharfenstein – Rangerstation ;;51.83017;10.60277;1;;;;;1;;;;;;1;;;;;;
 3;Am Kruzifix ;;51.84437;10.61180;1;;;;;1;;;;;;1;;;;;;
@@ -382,7 +382,7 @@ HF04;Quelle Piepenpal Huy-Neinstedt;;51.964208;10.914785;;;;;;;;;;;;;;;;;;1
 HF05;Wasserschloss Westerburg;;52.0153;10.8664;;;;;;;;;;;;;;;;;;1
 HF06;Heimatmuseum Dedeleben;;52.033838;10.891779;;;;;;;;;;;;;;;;;;1
 HF07;Linde Vogelsdorf;;52.012116;10.898834;;;;;;;;;;;;;;;;;;1
-HF08;Mühle Badersleben;;51.979887;10.984441;;;;;;;;;;;;;;;;;;1
+HF08;Mühle Badersleben;;51.979887;10.894441;;;;;;;;;;;;;;;;;;1
 HF09;Heiketalwarte;;51.957371;10.883202;;;;;;;;;;;;;;;;;;1
 HF10;Windpark Druiberg;;51.984798;10.848555;;;;;;;;;;;;;;;;;;1
 HF11;Deersheim;;51.979573;10.779755;;;;;;;;;;;;;;;;;;1
